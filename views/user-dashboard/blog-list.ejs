@@ -1,0 +1,201 @@
+<%- include('../components/header') -%>
+
+  <body class="h-100">
+   
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Main Sidebar -->
+        <aside class="main-sidebar col-12 col-md-3 col-lg-2 px-0">
+          <div class="main-navbar">
+            <nav class="navbar align-items-stretch navbar-light bg-white flex-md-nowrap border-bottom p-0">
+              <a class="navbar-brand w-100 mr-0" href="#" style="line-height: 25px;">
+                <div class="d-table m-auto">
+                
+                  <span class="d-none d-md-inline ml-1">Dashboard</span>
+                </div>
+              </a>
+              <a class="toggle-sidebar d-sm-inline d-md-none d-lg-none">
+                <i class="material-icons">&#xE5C4;</i>
+              </a>
+            </nav>
+          </div>
+          <form action="#" class="main-sidebar__search w-100 border-right d-sm-flex d-md-none d-lg-none">
+            <div class="input-group input-group-seamless ml-3">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="fas fa-search"></i>
+                </div>
+              </div>
+              <input class="navbar-search form-control" type="text" placeholder="Search for something..." aria-label="Search"> </div>
+          </form>
+          <div class="nav-wrapper">
+            <ul class="nav flex-column">
+           
+              <li class="nav-item">
+                <a class="nav-link active" href="/blog-posts">
+                  <i class="material-icons">vertical_split</i>
+                  <span>Blog Posts</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="/dashboard">
+                  <i class="material-icons">note_add</i>
+                  <span>Add New Post</span>
+                </a>
+              </li>
+             
+            </ul>
+          </div>
+        </aside>
+   
+        
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    <img class="user-avatar rounded-circle mr-2" src="/static/images/user.jpg" alt="User Avatar">
+                    <span class="d-none d-md-inline-block"><%= user.name %></span>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-small">
+                   
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item text-danger" href="/logout">
+                      <i class="material-icons text-danger">&#xE879;</i> Logout </a>
+                  </div>
+                </li>
+              </ul>
+              <nav class="nav">
+                <a href="#" class="nav-link nav-link-icon toggle-sidebar d-md-inline d-lg-none text-center border-left" data-toggle="collapse" data-target=".header-navbar" aria-expanded="false" aria-controls="header-navbar">
+                  <i class="material-icons">&#xE5D2;</i>
+                </a>
+              </nav>
+            </nav>
+          </div>
+          <!-- / .main-navbar -->
+          <div class="main-content-container container-fluid px-4">
+            <!-- Page Header -->
+            <div class="page-header row no-gutters py-4">
+              <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
+                <span class="text-uppercase page-subtitle">Components</span>
+                <h3 class="page-title">Blog Posts</h3>
+              </div>
+              <% if (message === 'success') { %>
+                <div class="alert alert-success alert-dismissible fade show mb-0" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+                  <i class="fa fa-check mx-2"></i>
+                  <strong>Success!</strong> Your post has been updated!
+                </div>
+                <% } %>
+            </div>
+            <!-- End Page Header -->
+           
+            <div class="row">
+            
+                <% posts.forEach((post) => { %>
+              <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                <div class="card card-small card-post card-post--1">
+                  <div class="card-post__image">
+                    <a href="#" class="card-post__category badge badge-pill badge-dark"><%= post.category.name %></a>
+
+                  </div>
+                  
+                  <div class="card-body">
+                    <h5 class="card-title">
+                         
+                          <a class="text-fiord-blue" href="#"><%= post.title %> </a>
+                    </h5>
+                    <p class="card-text d-inline-block mb-3"><%= post.content %></p>
+                    <span class="text-muted"><%= post.created_at %></span>
+                  </br></br>
+                    <span>  <button type="button" class="mb-2 btn btn-sm <%= post.status === 'approved' ? 'btn-success' : 'btn-danger' %> mr-1"><%= post.status %></button>
+                    </span>
+                    <button type="button" class="mb-2 btn btn-sm btn-outline-dark mr-1 edit-button" data-toggle="modal" data-category="<%= post.category.id %>" data-content="<%= post.content %>" data-title="<%= post.title %>" data-id="<%= post.id %>" data-target="#editPostModal">Edit</button>
+                  
+
+                  </div>
+                </div>
+              </div>
+              <% }); %>
+            </div>
+           
+          </div>
+         
+        </main>
+      </div>
+    </div>
+   
+    <!-- Edit Post Modal -->
+<div class="modal fade" id="editPostModal" tabindex="-1" role="dialog" aria-labelledby="editPostModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editPostModalLabel">Edit Post</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Your edit post form goes here -->
+        <form class="edit-post-form" action="/update-post" method="post">
+          <input type="hidden" id="postId" name="id" >
+          <div class="form-group">
+            <input class="form-control form-control-lg mb-3" id="postTitle" type="text" name="title" placeholder="Your Post Title">
+          </div>
+          <div class="form-group">
+            <textarea name="content" class="form-control mb-3" id="postContent" rows="5" placeholder="Post Content"></textarea>
+          </div>
+          <div class="form-group">
+            <select id="categorySel" class="form-control mb-3" name="category">
+              <% categories.forEach((category) => { %>
+              <option value="<%= category.id %>"><%= category.name %></option>
+              <% }); %>
+             
+            </select>
+          </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" id="saveChangesButton">Save changes</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+<%- include('../components/footer') -%>
+  </body>
+  <script>$(document).ready(function () {
+    // When the edit button is clicked, populate the modal with data
+    $('.edit-button').on('click', function () {
+      var title = $(this).data('title');
+      var content = $(this).data('content');
+      var postId = $(this).data('id');
+      var category = $(this).data('category');
+  
+      // Set the data in the modal form
+      $('#postTitle').val(title);
+      $('#postContent').val(content);
+      $('#postId').val(postId);
+      $('#categorySel').val(category);
+  
+      // Open the modal
+      $('#editPostModal').modal('open');
+    });
+  
+    // Handle form submission
+    $('#editForm').on('submit', function (e) {
+      e.preventDefault();
+  
+      // Get the updated values from the form
+      var updatedTitle = $('#postTitle').val();
+      var updatedContent = $('#postContent').val();
+      var postId = $('#postId').val();
+  
+      // Perform the update action here (e.g., AJAX call to the backend)
+  
+      // Close the modal after saving changes
+      $('#editPostModal').modal('close');
+    });
+  });
+  </script>
+</html>

@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>articles</title>
+	</head>
+	<body>
+	  <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+	   
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+	  
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		  <ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+			  <a class="nav-link text-white" href="/">Home <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+			  <a class="nav-link text-white" href="">About us</a>
+			  
+			</li>
+			<a class="nav-link text-white "  href="/signup">Signup</a>
+			</li>
+			
+			</ul>
+			
+					
+
+				
+			<ul class="ml-auto ">
+			<li class="nav-item list-unstyled">
+				
+			  <a class="nav-link text-white "  href="/logout">Logout</a>
+			</li>
+		  </ul>
+		 
+		</div> 
+	  </nav>
+	
+	<div class="container">	
+		<div class="row">
+         
+			<div class="col-md-8 blog-posts">
+				<div class="row">
+					<div class="text-dark">
+						
+						<% approvedPosts.forEach((post) => { %>
+						<div class="post-blog">
+							<div class="blog-image">
+								<a href="blog-single.html">
+									<img src="images/includes/blog2.jpg" alt="">
+								</a>
+							</div> <!-- /.blog-image -->
+						<div class="text-dark">
+								<span class="meta-date"><a href="#"><%= post.created_at %></a></span>
+								<span class="meta-author"><a href="#"><%= post.user.name %></a></span>
+								<h3><a href="blog-single.html"><%= post.title %></a></h3>
+								<p class="light-text"><%= post.content %> <a href="blog-single.html">Continue Reading...</a></p>
+							</div> <!-- /.blog-content -->
+						</div> <!-- /.post-blog -->
+						<% }); %>
+					</div> <!-- /.col-md-12 -->
+					<div class="col-md-12">
+						<ul class="pages">
+							<li><a href="#" class="active">1</a></li>
+							<li><a href="#">2</a></li>
+						
+						</ul>
+					</div> <!-- /.col-md-12 -->
+				</div> <!-- /.row -->
+			</div> <!-- /.col-md-8 -->
+
+		
+
+		</div> <!-- /.row -->
+	</div> <!-- /.container -->	
+
+
+
+	<!-- Scripts -->
+	<script src="/static/js/min/plugins.min.js"></script>
+	<script src="/static/js/min/medigo-custom.min.js"></script>
+
+
+</body>
+</html>

@@ -1,26 +1,23 @@
 var express = require('express');
+
 var app = express();
-var session = require('express-session');
-var bodyParser = require('body-parser');
-const user=require("./model/signup-login-schema.js")
-const articleRouter=require('./route/articles')
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/blog');
-
 app.use(express.static('public'));
-app.use(express.urlencoded({ extended: false }))
-app.use('/articles',articleRouter)
 
-var signup=require('./route/signup.js')
-app.use('/',signup)
-
-
-
+var routes = require('./routes/web');
+const session = require('express-session');
+app.use(session({
+    secret: 'my-express',
+    resave: false,
+    saveUninitialized: false
+  }));
+  //View engine
 app.set('view engine', 'ejs');
-app.set('./views');
+//For retrieving public folder
+app.use('/static', express.static('public'));
 
-
-
-
-
-app.listen(3000,()=>console.log('server started on port no 3000'))
+app.use(function(req, res, next) {
+  res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+  next();
+});
+app.use('/',routes);
+app.listen(3000,()=>(console.log('sever started')));
