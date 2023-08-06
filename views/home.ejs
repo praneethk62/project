@@ -7,6 +7,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title>articles</title>
+		
 	</head>
 	<body>
 	  <nav class="navbar navbar-expand-lg navbar-light bg-primary">
@@ -34,7 +35,7 @@
 				
 			<ul class="ml-auto ">
 			<li class="nav-item list-unstyled">
-				
+				<a class="nav-link text-white "  ></a>
 			  <a class="nav-link text-white "  href="/logout">Logout</a>
 			</li>
 		  </ul>
@@ -43,28 +44,34 @@
 	  </nav>
 	
 	<div class="container">	
-		<div class="row">
+		<div class="">
          
-			<div class="col-md-8 blog-posts">
-				<div class="row">
+			<div class="">
+				<div class="">
 					<div class="text-dark">
 						
 						<% approvedPosts.forEach((post) => {
 							// Split the post content into words
 							const words = post.content.split(' ');
 							// Get the first 10 words
-							const limitedContent = words.slice(0, 10).join(' ');
+							const limitedContent = words.slice(0, 50).join(' ');
 						  %>
 						<div class="post-blog">
-							<div class="blog-image">
+							<div class="">
 								<a href="blog-single.html">
-									<img src="images/includes/blog2.jpg" alt="">
+									<img src="" alt="">
 								</a>
 							</div> <!-- /.blog-image -->
 							<div class="blog-content">
+								
 								<span class="meta-date"><a href="#"><%= post.created_at %></a></span>
+							
 								<span class="meta-author"><a href="#"><%= post.user.name %></a></span>
+								<li>
+									<ul>
 								<h3><a href="/single-blog/<%= post.id %>"><%= post.title %></a></h3>
+							</ul>
+						</li>
 								<div class="heart-container">
 									<span id="heart-<%= post.id %>" class="fa fa-heart-o like"></span>
 								</div>
@@ -78,26 +85,6 @@
 						</div> <!-- /.post-blog -->
 						<% }); %>
 					</div> <!-- /.col-md-12 -->
-					<div class="col-md-12">
-						<ul class="pages">
-							<li><a href="#" class="active">1</a></li>
-							<li><a href="#">2</a></li>
-						
-						</ul>
-					</div> <!-- /.col-md-12 -->
-				</div> <!-- /.row -->
-			</div> <!-- /.col-md-8 -->
-
-		
-
-		</div> <!-- /.row -->
-	</div> <!-- /.container -->	
-
-
-
-	<!-- Scripts -->
-	<script src="/static/js/min/plugins.min.js"></script>
-	<script src="/static/js/min/medigo-custom.min.js"></script>
 
 
 </body>

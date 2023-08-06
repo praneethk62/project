@@ -1,26 +1,29 @@
-var express = require('express');
+var express = require("express");
 
 var app = express();
-app.use(express.static('public'));
+app.use(express.static("public"));
 
-
-var routes = require('./routes/web');
-const session = require('express-session');
-app.use(session({
-    secret: 'my-express',
+var routes = require("./routes/web");
+const session = require("express-session");
+app.use(
+  session({
+    secret: "my-express",
     resave: false,
-    saveUninitialized: false
-  }));
-  //View engine
-app.set('view engine', 'ejs');
+    saveUninitialized: false,
+  })
+);
+//View engine
+app.set("view engine", "ejs");
 //For retrieving public folder
-app.use('/static', express.static('public'));
+app.use("/static", express.static("public"));
 
-app.use(function(req, res, next) {
-  res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+app.use(function (req, res, next) {
+  res.header(
+    "Cache-Control",
+    "no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0"
+  );
   next();
 });
-app.use('/',routes);
+app.use("/", routes);
 
-
-app.listen(3000,()=>(console.log('sever started')));
+app.listen(3000, () => console.log("sever started"));
