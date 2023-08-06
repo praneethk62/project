@@ -4,6 +4,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>articles</title>
+
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-primary">
@@ -79,23 +80,14 @@
               </nav>
             </nav>
           </div>
-          <!-- / .main-navbar -->
-          <div class="main-content-container container-fluid px-4">
-            <!-- Page Header -->
-            <div class="page-header row no-gutters py-4">
-              <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
-                <span class="text-uppercase page-subtitle"></span>
-               
-            
+          
+            <div class="center">
 
-                <h3 class="page-title">Add New Post</h3>
+                <h3 style="text-align: center;" class="col-xs-1 center-block"><u> Add New Post</u></h3>
+              </div>
               </div>
             </div>
-            <!-- End Page Header -->
-            <div class="row">
-              <div class="col-lg-9 col-md-12">
-                <!-- Add New Post Form -->
-   
+          <div style="margin:40px;">
 					<% if (message === 'success') { %>
 						<div class="alert alert-success alert-dismissible fade show mb-0" role="alert">
 						  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -128,7 +120,7 @@
 							</button>
 						  </li>
 						</form>
-            
+          </div>
 					  </div>
 					  
                 </div>

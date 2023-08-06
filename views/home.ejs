@@ -7,7 +7,9 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title>articles</title>
-		
+		<style>hr {
+			border: 1px solid rgb(0, 0, 0);
+		  }</style>
 	</head>
 	<body>
 	  <nav class="navbar navbar-expand-lg navbar-light bg-primary">
@@ -25,7 +27,7 @@
 			  <a class="nav-link text-white" href="">About us</a>
 			  
 			</li>
-			<a class="nav-link text-white "  href="/signup">Signup</a>
+			<a class="nav-link text-white "  href="/signup">Signup/Login</a>
 			</li>
 			
 			</ul>
@@ -67,12 +69,9 @@
 								<span class="meta-date"><a href="#"><%= post.created_at %></a></span>
 							
 								<span class="meta-author"><a href="#"><%= post.user.name %></a></span>
-								<li>
-									<ul>
+							
 								<h3><a href="/single-blog/<%= post.id %>"><%= post.title %></a></h3>
-							</ul>
-						</li>
-								<div class="heart-container">
+							<div class="heart-container">
 									<span id="heart-<%= post.id %>" class="fa fa-heart-o like"></span>
 								</div>
 								
@@ -80,12 +79,14 @@
 									<%= limitedContent %> <a href="/single-blog/<%= post.id %>">read more...</a>
 									
 								</p>
-								
+									<hr> 
 							</div> <!-- /.blog-content -->
 						</div> <!-- /.post-blog -->
 						<% }); %>
+						 
 					</div> <!-- /.col-md-12 -->
-
-
+				
+				
 </body>
+
 </html>

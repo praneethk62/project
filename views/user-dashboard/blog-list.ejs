@@ -1,30 +1,25 @@
 <%- include('../components/header') -%>
 
  
-          <div class="main-content-container container-fluid px-4">
-            <!-- Page Header -->
+        
             
-                <h3 class="page-title">Blog Posts</h3>
+                <h3 style="text-align: center;" class="page-title" ><u> Blog Posts</u></h3>
               </div>
               <% if (message === 'success') { %>
-                <div class="alert alert-success alert-dismissible fade show mb-0" role="alert">
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                  </button>
-                  <i class="fa fa-check mx-2"></i>
+              
+                
                   <strong>Success!</strong> Your post has been updated!
                 </div>
                 <% } %>
             </div>
             <!-- End Page Header -->
            
-            <div class="row">
+            <div style="margin: 50px;" class="row">
             
                 <% posts.forEach((post) => { %>
-              <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-                <div class="card card-small card-post card-post--1">
-                  <div class="card-post__image">
-                    <a href="#" class="card-post__category badge badge-pill badge-dark"><%= post.category.name %></a>
+                  <div class="card">
+                    <div class="card-body">
+                    <div class="btn btn-primary"><%= post.category.name %></a>
 
                   </div>
                   
@@ -39,7 +34,7 @@
                     <span>  <button type="button" class="mb-2 btn btn-sm <%= post.status === 'approved' ? 'btn-success' : 'btn-danger' %> mr-1"><%= post.status %></button>
                     </span>
                     <button type="button" class="mb-2 btn btn-sm btn-outline-dark mr-1 edit-button" data-toggle="modal" data-category="<%= post.category.id %>" data-content="<%= post.content %>" data-title="<%= post.title %>" data-id="<%= post.id %>" data-target="#editPostModal">Edit</button>
-                  
+                    <button type="submit" class="btn btn-danger" onclick="return confirmDelete('<%= post.title %><%= post.content %><%= post.created_at %>')">Delete</button>
 
                   </div>
                 </div>

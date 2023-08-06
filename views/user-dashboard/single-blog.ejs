@@ -1,26 +1,10 @@
 <%- include('../components/header') -%>
 
-	<div class="first-widget parallax" id="blogId">
-		<div class="parallax-overlay">
-			<div class="container pageTitle">
-				<div class="row">
-					<div class="col-md-6 col-sm-6">
-
-				</div> <!-- /.row -->
-			</div> <!-- /.container -->
-		</div> <!-- /.parallax-overlay -->
-	</div> <!-- /.pageTitle -->
 
 	<div class="container">	
-		<div class="row">
+	
 
-			<div class="col-md-8 blog-posts">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="post-blog">
-							<div class="blog-image">
-								<img src="images/includes/blog2.jpg" alt="">
-							</div> <!-- /.blog-image -->
+		
 							<div class="blog-content">
 								<span class="meta-date"><a href="#"><%= post.created_at %></a></span>
 								<span class="meta-comments"><a href="#blog-comments"></a></span>
@@ -55,6 +39,6 @@
 
 	<script src="/static/js/min/medigo-custom.min.js"></script>
 
-
+	<%- include('../components/footer') -%>
 </body>
 </html>
